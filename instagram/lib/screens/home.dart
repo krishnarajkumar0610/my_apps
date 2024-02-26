@@ -162,7 +162,7 @@ class Home extends StatelessWidget {
                             Text(followers[index])
                           ],
                         ),
-                        Image.asset("assets/posts/post_one.jpg")
+                        Image.asset("assets/posts/post_$index.jpg")
                       ],
                     ),
                   ),
