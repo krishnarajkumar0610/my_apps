@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram/bloc/bloc.dart';
+import 'package:instagram/bloc/states.dart';
+
+import '../bloc/events.dart';
 
 class Home extends StatelessWidget {
   final screenWidth;
@@ -11,11 +16,28 @@ class Home extends StatelessWidget {
       required this.screenHeight,
       required this.orientation});
 
+  List<String> followers = [
+    "Krishna",
+    "Raj",
+    "Kumar",
+    "Priya",
+    "Dharshini",
+    "Sathiya",
+    "Praba",
+    "Prakash",
+    "Sharon",
+    "Joseph",
+    "Prem",
+    "Viswanathan",
+    "Shahana",
+    "Juhi",
+    "Mohammed"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Row(
           children: [
@@ -29,15 +51,28 @@ class Home extends StatelessWidget {
             const Icon(Icons.keyboard_arrow_down_sharp)
           ],
         ),
-        actions: const [
-          Icon(
-            Icons.favorite_border,
+        actions: [
+          BlocConsumer<InstaBloc, InstaStates>(
+            builder: (context, state) => GestureDetector(
+                onTap: () {
+                  context
+                      .read<InstaBloc>()
+                      .add(ThemeEvent(themeStatus: state.themeStatus));
+                },
+                child: Icon(Icons.dark_mode)),
+            listener: (BuildContext context, Object? state) {},
           ),
-          SizedBox(
+          const SizedBox(
             width: 30,
           ),
-          Icon(Icons.chat),
-          SizedBox(
+          const Icon(
+            Icons.favorite_border,
+          ),
+          const SizedBox(
+            width: 30,
+          ),
+          const Icon(Icons.chat),
+          const SizedBox(
             width: 15,
           )
         ],
@@ -87,7 +122,7 @@ class Home extends StatelessWidget {
                   ),
                   Row(
                     children: List.generate(
-                      100,
+                      followers.length,
                       (index) => Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: CircleAvatar(
@@ -98,16 +133,46 @@ class Home extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
-            //
+            const SizedBox(
+              height: 50,
+            ),
+            SizedBox(
+              height: 600,
+              width: double.infinity,
+              child: ListView.builder(
+                itemCount: followers.length,
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SizedBox(
+                    height: 230,
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              child: Image.asset("assets/follower.png"),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Text(followers[index])
+                          ],
+                        ),
+                        Image.asset("assets/posts/post_one.jpg")
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
       bottomNavigationBar: const BottomAppBar(
-        color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

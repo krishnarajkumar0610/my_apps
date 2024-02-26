@@ -66,6 +66,7 @@ flutter:
       - assets/meta.png
       - assets/dp.png
       - assets/follower.png
+      - assets/posts/post_one.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
