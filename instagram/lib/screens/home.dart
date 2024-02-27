@@ -45,8 +45,8 @@ class Home extends StatelessWidget {
               "assets/insta_text.png",
               height: 60,
             ),
-            const SizedBox(
-              width: 5,
+            SizedBox(
+              width: screenWidth * 0.02,
             ),
             const Icon(Icons.keyboard_arrow_down_sharp)
           ],
@@ -59,21 +59,21 @@ class Home extends StatelessWidget {
                       .read<InstaBloc>()
                       .add(ThemeEvent(themeStatus: state.themeStatus));
                 },
-                child: Icon(Icons.dark_mode)),
+                child: const Icon(Icons.dark_mode)),
             listener: (BuildContext context, Object? state) {},
           ),
-          const SizedBox(
-            width: 30,
+          SizedBox(
+            width: screenWidth * 0.05,
           ),
           const Icon(
             Icons.favorite_border,
           ),
-          const SizedBox(
-            width: 30,
+          SizedBox(
+            width: screenWidth * 0.05,
           ),
           const Icon(Icons.chat),
-          const SizedBox(
-            width: 15,
+          SizedBox(
+            width: screenWidth * 0.05,
           )
         ],
       ),
@@ -138,17 +138,18 @@ class Home extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 50,
+              height: 10,
             ),
             SizedBox(
               height: 600,
               width: double.infinity,
               child: ListView.builder(
-                itemCount: followers.length,
+                itemCount: 4,
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: SizedBox(
-                    height: 230,
+                  child: Container(
+                    color: Colors.white,
+                    height: 250,
                     child: Column(
                       children: [
                         Row(
@@ -162,13 +163,15 @@ class Home extends StatelessWidget {
                             Text(followers[index])
                           ],
                         ),
-                        Image.asset("assets/posts/post_$index.jpg")
+                        Image.asset(
+                          "assets/posts/post_${index + 1}.jpg",
+                        )
                       ],
                     ),
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

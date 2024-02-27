@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:instagram/bloc/bloc.dart';
 import 'package:instagram/bloc/states.dart';
 import 'package:instagram/screens/log_in.dart';
 
-void main() {
+void main() async {
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
