@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:instagram/screens/signup_mobile.dart';
@@ -10,10 +9,11 @@ class Login extends StatelessWidget {
   final screenHeight;
   final orientation;
 
-  const Login({super.key,
-    required this.screenWidth,
-    required this.screenHeight,
-    required this.orientation});
+  const Login(
+      {super.key,
+      required this.screenWidth,
+      required this.screenHeight,
+      required this.orientation});
 
   Widget textField(String text, TextEditingController controller,
       {Icon? icon}) {
@@ -25,43 +25,42 @@ class Login extends StatelessWidget {
         labelText: text,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         contentPadding:
-        const EdgeInsets.symmetric(vertical: 16, horizontal: 10.0),
+            const EdgeInsets.symmetric(vertical: 16, horizontal: 10.0),
       ),
     );
   }
 
-  Widget getButton(String text,
-      bool goHomePage,
-      BuildContext context, {
-        double? width,
-        double? height,
-        Color? textColor,
-        Color? buttonColor,
-      }) {
+  Widget getButton(
+    String text,
+    bool goHomePage,
+    BuildContext context, {
+    double? width,
+    double? height,
+    Color? textColor,
+    Color? buttonColor,
+  }) {
     return GestureDetector(
       onTap: () {
         if (goHomePage) {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>
-                    Home(
-                      orientation: orientation,
-                      screenWidth: screenWidth,
-                      screenHeight: screenHeight,
-                    ),
+                builder: (context) => Home(
+                  orientation: orientation,
+                  screenWidth: screenWidth,
+                  screenHeight: screenHeight,
+                ),
               ));
         } else {
           print("Crt tha");
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>
-                    SignupMobileNumber(
-                      screenHeight: screenWidth,
-                      screenWidth: screenHeight,
-                      orientation: orientation,
-                    ),
+                builder: (context) => SignupMobileNumber(
+                  screenHeight: screenWidth,
+                  screenWidth: screenHeight,
+                  orientation: orientation,
+                ),
               ));
         }
       },

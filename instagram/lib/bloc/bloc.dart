@@ -4,9 +4,12 @@ import 'package:instagram/bloc/states.dart';
 
 class InstaBloc extends Bloc<InstaEvents, InstaStates> {
   InstaBloc() : super(InstaStates()) {
+
     on<ThemeEvent>((event, emit) {
       print(event.themeStatus);
       emit(InstaStates(themeStatus: !event.themeStatus));
     });
+
+
   }
 }
