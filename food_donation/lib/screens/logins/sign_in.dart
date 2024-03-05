@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_donating/screens/logins/home.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -74,59 +75,41 @@ class _SignInState extends State<SignIn> {
     return ListView(children: [
       Column(
         children: [
-          SizedBox(
-            height: orientation == Orientation.portrait
-                ? deviceHeight * 0.02
-                : deviceHeight * 0.05,
-          ),
+          SizedBox(height: deviceHeight * 0.02),
           getField(
             controller: _username,
             icon: const Icon(Icons.person),
             hintText: "User name",
-            top: orientation == Orientation.portrait
-                ? deviceHeight * 0.04
-                : deviceHeight * 0.04,
-            left: orientation == Orientation.portrait
-                ? deviceWidth * 0.05
-                : deviceWidth * 0.04,
-            right: orientation == Orientation.portrait
-                ? deviceWidth * 0.05
-                : deviceWidth * 0.04,
+            top: deviceHeight * 0.04,
+            left: deviceWidth * 0.05,
+            right: deviceWidth * 0.05,
           ),
           getField(
             controller: _signInPass,
             icon: const Icon(Icons.lock),
             hintText: "Password",
-            top: orientation == Orientation.portrait
-                ? deviceHeight * 0.04
-                : deviceHeight * 0.04,
-            left: orientation == Orientation.portrait
-                ? deviceWidth * 0.05
-                : deviceWidth * 0.04,
-            right: orientation == Orientation.portrait
-                ? deviceWidth * 0.05
-                : deviceWidth * 0.04,
+            top: deviceHeight * 0.04,
+            left: deviceWidth * 0.05,
+            right: deviceWidth * 0.05,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 30),
             child: GestureDetector(
-                onTap: () {}, //w:250,h:50,
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(),
+                      ));
+                }, //w:250,h:50,
                 child: otherSignUp(
-                    width: orientation == Orientation.portrait
-                        ? deviceWidth * 0.70
-                        : deviceWidth * 0.50,
-                    height: orientation == Orientation.portrait
-                        ? deviceHeight * 0.05
-                        : deviceHeight * 0.10,
+                    width: deviceWidth * 0.70,
+                    height: deviceHeight * 0.05,
                     text: "SIGN IN",
-                    color: Colors.lightGreen)),
+                    color: Colors.orange)),
           ),
           Padding(
-            padding: EdgeInsets.only(
-                left: orientation == Orientation.portrait
-                    ? deviceWidth * 0.400
-                    : deviceWidth * 0.500,
-                top: 20),
+            padding: EdgeInsets.only(left: deviceWidth * 0.400, top: 20),
             child: GestureDetector(
               onTap: () {
                 print("Pressed forget password");
@@ -154,24 +137,16 @@ class _SignInState extends State<SignIn> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 otherSignUp(
-                    width: orientation == Orientation.portrait
-                        ? deviceWidth * 0.360
-                        : deviceWidth * 0.360,
+                    width: deviceWidth * 0.360,
                     text: "Google",
                     color: Colors.white,
-                    height: orientation == Orientation.portrait
-                        ? deviceHeight * 0.050
-                        : deviceHeight * 0.10,
+                    height: deviceHeight * 0.050,
                     textColor: Colors.black),
                 otherSignUp(
-                    width: orientation == Orientation.portrait
-                        ? deviceWidth * 0.360
-                        : deviceWidth * 0.360,
+                    width: deviceWidth * 0.360,
                     text: "Facebook",
                     color: Colors.deepPurple[700],
-                    height: orientation == Orientation.portrait
-                        ? deviceHeight * 0.050
-                        : deviceHeight * 0.10,
+                    height: deviceHeight * 0.050,
                     textColor: Colors.white),
               ],
             ),

@@ -6,8 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../bloc/grocery_bloc.dart';
 import '../../bloc/grocery_states.dart';
 
-// this is sing up page
-
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -70,11 +68,31 @@ class _SignUpState extends State<SignUp> {
             ),
           ));
 
+  void showStatus({
+    required Icon icon,
+    required String text,
+    required Color buttonColor,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: icon,
+        content: Text(text),
+        actions: [
+          MaterialButton(
+            color: buttonColor,
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Ok"),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.sizeOf(context).width;
     double deviceHeight = MediaQuery.sizeOf(context).height;
-    Orientation orientation = MediaQuery.of(context).orientation;
 
     return BlocConsumer<GroceryBloc, GroceryStates>(
       listener: (context, state) {},
@@ -85,66 +103,50 @@ class _SignUpState extends State<SignUp> {
               controller: _fullName,
               icon: const Icon(Icons.person),
               hintText: "Full Name",
-              top: orientation == Orientation.portrait
-                  ? deviceHeight * 0.04
-                  : deviceHeight * 0.04,
-              left: orientation == Orientation.portrait
-                  ? deviceWidth * 0.05
-                  : deviceWidth * 0.04,
-              right: orientation == Orientation.portrait
-                  ? deviceWidth * 0.05
-                  : deviceWidth * 0.04,
+              top: deviceHeight * 0.04,
+              left: deviceWidth * 0.05,
+              right: deviceWidth * 0.05,
             ),
             getField(
               controller: _email,
               icon: const Icon(Icons.lock),
               hintText: "Email ID",
-              top: orientation == Orientation.portrait
-                  ? deviceHeight * 0.04
-                  : deviceHeight * 0.04,
-              left: orientation == Orientation.portrait
-                  ? deviceWidth * 0.05
-                  : deviceWidth * 0.04,
-              right: orientation == Orientation.portrait
-                  ? deviceWidth * 0.05
-                  : deviceWidth * 0.04,
+              top: deviceHeight * 0.04,
+              left: deviceWidth * 0.05,
+              right: deviceWidth * 0.05,
             ),
             getField(
               controller: _password,
               icon: const Icon(Icons.lock),
               hintText: "Password",
-              top: orientation == Orientation.portrait
-                  ? deviceHeight * 0.04
-                  : deviceHeight * 0.04,
-              left: orientation == Orientation.portrait
-                  ? deviceWidth * 0.05
-                  : deviceWidth * 0.04,
-              right: orientation == Orientation.portrait
-                  ? deviceWidth * 0.05
-                  : deviceWidth * 0.04,
+              top: deviceHeight * 0.04,
+              left: deviceWidth * 0.05,
+              right: deviceWidth * 0.05,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30),
               child: GestureDetector(
                   onTap: () {
-                    // when i sign up then it need to display a box to tell go to sign in page
-                    //context.read<GroceryBloc>().add(SignupValidation());
-                    _fullName.clear();
-                    _email.clear();
-                    _password.clear();
-
-                    print(
-                        "Successfully Created account for this app, You can log in");
+                    state.signupStatus
+                        ? showStatus(
+                            icon: const Icon(Icons.warning,
+                                color: Colors.yellow, size: 40),
+                            buttonColor: Colors.red,
+                            text: "Sign up failed")
+                        : showStatus(
+                            icon: const Icon(
+                              Icons.check_circle,
+                              color: Colors.green,
+                              size: 40,
+                            ),
+                            buttonColor: Colors.green,
+                            text: "Sign up successful please log in");
                   }, //w:250,h:50,
                   child: otherSignUp(
-                      width: orientation == Orientation.portrait
-                          ? deviceWidth * 0.70
-                          : deviceWidth * 0.50,
-                      height: orientation == Orientation.portrait
-                          ? deviceHeight * 0.05
-                          : deviceHeight * 0.10,
+                      width: deviceWidth * 0.70,
+                      height: deviceHeight * 0.05,
                       text: "SIGN UP",
-                      color: Colors.lightGreen)),
+                      color: Colors.orange)),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
@@ -160,24 +162,16 @@ class _SignUpState extends State<SignUp> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   otherSignUp(
-                      width: orientation == Orientation.portrait
-                          ? deviceWidth * 0.360
-                          : deviceWidth * 0.360,
+                      width: deviceWidth * 0.360,
                       text: "Google",
                       color: Colors.white,
-                      height: orientation == Orientation.portrait
-                          ? deviceHeight * 0.050
-                          : deviceHeight * 0.10,
+                      height: deviceHeight * 0.050,
                       textColor: Colors.black),
                   otherSignUp(
-                      width: orientation == Orientation.portrait
-                          ? deviceWidth * 0.360
-                          : deviceWidth * 0.360,
+                      width: deviceWidth * 0.360,
                       text: "Facebook",
                       color: Colors.deepPurple[700],
-                      height: orientation == Orientation.portrait
-                          ? deviceHeight * 0.050
-                          : deviceHeight * 0.10,
+                      height: deviceHeight * 0.050,
                       textColor: Colors.white),
                 ],
               ),

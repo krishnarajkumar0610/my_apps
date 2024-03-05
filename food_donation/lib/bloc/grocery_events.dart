@@ -6,3 +6,14 @@ class ChangeTheme extends GroceryEvents {
 
   ChangeTheme({this.themeStatus, this.fromLogout = false});
 }
+
+class SignupValidation extends GroceryEvents {
+  String? fullName;
+  String? emailId;
+  String? signupPass;
+
+  SignupValidation(
+      {required this.fullName,
+      required this.signupPass,
+      required this.emailId});
+}

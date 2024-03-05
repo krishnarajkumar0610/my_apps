@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_donating/screens/logins/intro_page.dart';
 import 'bloc/grocery_bloc.dart';
 import 'bloc/grocery_states.dart';
+import 'intro_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -6,11 +6,13 @@ class GroceryStates {
   bool themeStatus;
   String? greetingStatus;
   int? totalAmount;
+  bool signupStatus = true;
 
   GroceryStates(
       {required this.cartItems,
       this.totalAmount,
       this.greetingStatus,
       this.themeStatus = true,
-      this.shopItems});
+      this.shopItems,
+      this.signupStatus = false});
 }
