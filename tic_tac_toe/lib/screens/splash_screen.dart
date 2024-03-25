@@ -16,13 +16,13 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     print("HELLO");
-    // Timer(const Duration(seconds: 3), () {
-    //   Navigator.pushReplacement(
-    //       context,
-    //       MaterialPageRoute(
-    //         builder: (context) => const HomeScreen(),
-    //       ));
-    // });
+    Timer(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ));
+    });
   }
 
   @override
@@ -30,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen> {
     final deviceHeight = MediaQuery.sizeOf(context).height;
     final deviceWidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      backgroundColor: Colors.blue,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -63,11 +62,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     fontSize: deviceHeight * 0.02,
                   ),
                 ),
-                CircleAvatar(
-                  child: Image.asset(
-                    "assets/my_profile.png",
-                    height: 50,
-                  ),
+                Image.asset(
+                  "assets/my_profile.png",
+                  height: deviceHeight * 0.1,
                 )
               ],
             )

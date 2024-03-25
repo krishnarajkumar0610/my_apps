@@ -170,8 +170,7 @@ class HomePage extends StatelessWidget {
                 height: 500,
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
+                      crossAxisCount: 2, childAspectRatio: 1 / 1.3),
                   itemCount: images.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -200,6 +199,11 @@ class HomePage extends StatelessWidget {
                               images[index][1],
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                            MaterialButton(
+                              onPressed: () {},
+                              color: Colors.green,
+                              child: const Text("Donate food"),
                             )
                           ],
                         )),

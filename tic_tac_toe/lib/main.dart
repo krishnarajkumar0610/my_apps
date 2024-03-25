@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tic_tac_toe/bloc/select_player/select_player_bloc.dart';
 import 'screens/splash_screen.dart';
 
 void main() {
@@ -10,9 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SplashScreen(),
-      debugShowCheckedModeBanner: false,
+    return BlocProvider(
+      create: (context) => SelectPlayerModeBloc(),
+      child: const MaterialApp(
+        home: SplashScreen(),
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }
